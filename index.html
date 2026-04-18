@@ -1,1 +1,993 @@
-<!DOCTYPE html><html><head><title>Test</title></head><body><h1>Test</h1></body></html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تلخيص مادة ترميم – محمود النجار</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --border: #2e3350;
+  --text: #e8eaf0;
+  --text-muted: #8b90a8;
+  --text-li: #cdd0e0;
+  --radius: 14px;
+  --fs-title: 16px;
+  --fs-sub: 14px;
+  --fs-li: 15px;
+  --c1: #e74c3c; --c1l: #2a1210;
+  --c2: #e67e22; --c2l: #2a1a08;
+  --c3: #f1c40f; --c3l: #272208;
+  --c4: #3498db; --c4l: #0a1e30;
+  --c5: #2ecc71; --c5l: #0a2216;
+  --c6: #9b59b6; --c6l: #1a0d24;
+  --c7: #636e72; --c7l: #181a1c;
+  --c8: #a0522d; --c8l: #201008;
+  --c9: #b2bec3; --c9l: #1e2226;
+  --c10: #e74c3c; --c10l: #2a1210;
+  --c11: #f1c40f; --c11l: #272208;
+  --c12: #2ecc71; --c12l: #0a2216;
+  --c13: #3498db; --c13l: #0a1e30;
+  --c14: #9b59b6; --c14l: #1a0d24;
+}
+
+body.light {
+  --bg: #f0f2f7;
+  --surface: #ffffff;
+  --surface2: #e4e7f0;
+  --border: #c8cde0;
+  --text: #181b28;
+  --text-muted: #525878;
+  --text-li: #282c42;
+  --c1l: #fde8e6; --c2l: #fdeede; --c3l: #fefae0;
+  --c4l: #e3f0fb; --c5l: #e0f7ec; --c6l: #f3eafa;
+  --c7l: #eaecee; --c8l: #f5e8e0; --c9l: #f0f2f4;
+  --c10l: #fde8e6; --c11l: #fefae0; --c12l: #e0f7ec;
+  --c13l: #e3f0fb; --c14l: #f3eafa;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 20px;
+  transition: background .25s, color .25s;
+}
+
+.page-header {
+  text-align: center;
+  padding: 28px 20px 22px;
+  margin-bottom: 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background .25s, border-color .25s;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(52,152,219,.06), rgba(155,89,182,.06));
+  pointer-events: none;
+}
+.page-header h1 {
+  font-size: clamp(17px, 4vw, 24px);
+  font-weight: 700;
+  color: var(--text);
+  position: relative;
+}
+.page-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  position: relative;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.btn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--surface2); }
+.btn-print    { border-color: #3498db; color: #3498db; }
+.btn-print:hover { background: rgba(52,152,219,.1); }
+.btn-expand   { border-color: #2ecc71; color: #2ecc71; }
+.btn-expand:hover { background: rgba(46,204,113,.1); }
+.btn-collapse { border-color: #e74c3c; color: #e74c3c; }
+.btn-collapse:hover { background: rgba(231,76,60,.1); }
+
+.mode-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 2px solid #3498db;
+  background: var(--surface);
+  color: #3498db;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.mode-btn:hover { background: rgba(52,152,219,.1); }
+body.light .mode-btn { border-color: #9b59b6; color: #9b59b6; }
+body.light .mode-btn:hover { background: rgba(155,89,182,.1); }
+
+.font-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 4px 10px;
+  transition: background .25s, border-color .25s;
+}
+.font-box span { font-size: 13px; color: var(--text-muted); margin-left: 4px; }
+.fbtn {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .12s;
+  font-family: 'Cairo', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+}
+.fbtn:hover { background: var(--surface2); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow .2s, background .25s, border-color .25s;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.2); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  gap: 10px;
+  border-bottom: 1px solid transparent;
+  transition: filter .1s, border-color .2s;
+}
+.card-header:hover { filter: brightness(1.06); }
+.card-header.open { border-color: rgba(128,128,128,.15); }
+
+.card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,.18);
+}
+body.light .card-num { border-color: rgba(0,0,0,.12); }
+
+.card-title {
+  flex: 1;
+  font-size: var(--fs-title);
+  font-weight: 600;
+  line-height: 1.45;
+}
+.card-chevron {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(128,128,128,.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+  transition: transform .25s;
+}
+.card-chevron.open { transform: rotate(180deg); }
+
+.card-body { display: none; padding: 16px 18px 20px; }
+.card-body.open { display: block; }
+
+.sub-title {
+  font-size: var(--fs-sub);
+  font-weight: 600;
+  margin: 14px 0 9px;
+  padding: 5px 11px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.sub-title:first-child { margin-top: 0; }
+
+.items { list-style: none; }
+.items li {
+  position: relative;
+  padding-right: 18px;
+  margin-bottom: 9px;
+  font-size: var(--fs-li);
+  line-height: 1.7;
+  color: var(--text-li);
+  transition: color .25s;
+}
+.items li::before {
+  content: '•';
+  position: absolute;
+  right: 0; top: 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.q1  .card-header { background: var(--c1l);  } .q1  .card-num, .q1  .items li::before { color: var(--c1);  } .q1  .sub-title { background: rgba(231,76,60,.12);   color: var(--c1);  }
+.q2  .card-header { background: var(--c2l);  } .q2  .card-num, .q2  .items li::before { color: var(--c2);  } .q2  .sub-title { background: rgba(230,126,34,.12);  color: var(--c2);  }
+.q3  .card-header { background: var(--c3l);  } .q3  .card-num, .q3  .items li::before { color: var(--c3);  } .q3  .sub-title { background: rgba(241,196,15,.12);  color: var(--c3);  }
+.q4  .card-header { background: var(--c4l);  } .q4  .card-num, .q4  .items li::before { color: var(--c4);  } .q4  .sub-title { background: rgba(52,152,219,.12);  color: var(--c4);  }
+.q5  .card-header { background: var(--c5l);  } .q5  .card-num, .q5  .items li::before { color: var(--c5);  } .q5  .sub-title { background: rgba(46,204,113,.12);  color: var(--c5);  }
+.q6  .card-header { background: var(--c6l);  } .q6  .card-num, .q6  .items li::before { color: var(--c6);  } .q6  .sub-title { background: rgba(155,89,182,.12);  color: var(--c6);  }
+.q7  .card-header { background: var(--c7l);  } .q7  .card-num, .q7  .items li::before { color: #888; }      .q7  .sub-title { background: rgba(99,110,114,.12);  color: #888; }
+.q8  .card-header { background: var(--c8l);  } .q8  .card-num, .q8  .items li::before { color: var(--c8);  } .q8  .sub-title { background: rgba(160,82,45,.12);   color: var(--c8);  }
+.q9  .card-header { background: var(--c9l);  } .q9  .card-num, .q9  .items li::before { color: var(--c9);  }
+.q10 .card-header { background: var(--c10l); } .q10 .card-num, .q10 .items li::before { color: var(--c10); }
+.q11 .card-header { background: var(--c11l); } .q11 .card-num, .q11 .items li::before { color: var(--c11); } .q11 .sub-title { background: rgba(241,196,15,.12); color: var(--c11); }
+.q12 .card-header { background: var(--c12l); } .q12 .card-num, .q12 .items li::before { color: var(--c12); }
+.q13 .card-header { background: var(--c13l); } .q13 .card-num, .q13 .items li::before { color: var(--c13); }
+.q14 .card-header { background: var(--c14l); } .q14 .card-num, .q14 .items li::before { color: var(--c14); }
+
+.badge {
+  display: inline-block;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.badge-green  { background: rgba(46,204,113,.18);  color: #2ecc71; }
+.badge-yellow { background: rgba(241,196,15,.18);  color: #c9a80a; }
+.badge-red    { background: rgba(231,76,60,.18);   color: #e74c3c; }
+
+/* Search bar */
+.search-wrap {
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+}
+.search-input {
+  width: 100%;
+  padding: 10px 18px 10px 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .25s;
+}
+.search-input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52,152,219,.18);
+}
+.search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  opacity: .55;
+}
+.card {
+  transition: box-shadow .2s, background .25s, border-color .25s, opacity .25s, transform .25s;
+}
+.card.hidden {
+  display: none;
+}
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+  font-size: 16px;
+  grid-column: 1/-1;
+}
+
+/* ===== Annotation Toolbar ===== */
+#annCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+  cursor: crosshair;
+}
+#annCanvas.active { pointer-events: all; }
+
+.ann-toolbar {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 7px 14px;
+  box-shadow: 0 6px 28px rgba(0,0,0,.35);
+  z-index: 9999;
+  user-select: none;
+  transition: background .25s, border-color .25s;
+  flex-wrap: nowrap;
+}
+.ann-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 17px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+  transition: background .15s, transform .15s, border-color .15s;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+}
+.ann-btn:hover { background: var(--surface2); transform: scale(1.12); }
+.ann-btn.active { border-color: #3498db; background: rgba(52,152,219,.18); }
+.ann-color {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.ann-color:hover { transform: scale(1.18); }
+.ann-color.sel { border-color: #fff; transform: scale(1.22); box-shadow: 0 0 0 2px rgba(255,255,255,.3); }
+body.light .ann-color.sel { border-color: #222; }
+.ann-sep { width: 1px; height: 26px; background: var(--border); margin: 0 2px; flex-shrink:0; }
+.ann-size {
+  width: 60px;
+  accent-color: #3498db;
+  cursor: pointer;
+}
+.ann-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+@media print { #annCanvas, .ann-toolbar { display: none !important; } }
+
+@media print {
+  body { background: #fff !important; color: #111 !important; padding: 10px; }
+  .controls { display: none; }
+  .card { break-inside: avoid; border: 1px solid #ccc !important; margin-bottom: 12px; background: #fff !important; }
+  .card-body { display: block !important; }
+  .card-header { cursor: default; }
+  .card-chevron { display: none; }
+  .page-header { background: #f4f4f4 !important; border: 1px solid #ccc !important; }
+  .items li { color: #222 !important; font-size: 14px !important; }
+  .sub-title { color: #333 !important; background: #eee !important; }
+  .card-title { font-size: 15px !important; }
+}
+
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .controls { gap: 6px; }
+  .btn, .mode-btn { font-size: 13px; padding: 8px 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>📚 تلخيص مادة ترميم</h1>
+  <p style="font-size:15px;color:var(--text);margin-top:6px;font-weight:600;">محمود النجار · 01010747423</p>
+  <p id="cardCount">14 موضوعاً رئيسياً · اضغط على أي قسم لعرض تفاصيله</p>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="ابحث في المواضيع..." oninput="filterCards(this.value)" dir="rtl">
+  </div>
+  <button class="mode-btn" onclick="toggleMode()" id="modeBtn">
+    <span id="modeIcon">☀️</span>
+    <span id="modeLabel">وضع فاتح</span>
+  </button>
+
+  <div class="font-box">
+    <span>حجم الخط</span>
+    <button class="fbtn" onclick="changeFont(-1)">−</button>
+    <button class="fbtn" onclick="changeFont(1)">+</button>
+  </div>
+
+  <button class="btn btn-expand"   onclick="expandAll()">فتح الكل ▼</button>
+  <button class="btn btn-collapse" onclick="collapseAll()">إغلاق الكل ▲</button>
+  <button class="btn btn-print"    onclick="window.print()">🖨️ طباعة</button>
+</div>
+
+<div class="grid" id="grid">
+<div class="no-results" id="noResults">🔎 لا توجد نتائج مطابقة للبحث</div>
+
+<div class="card q1">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">1</span>
+    <span class="card-title">🔴 الأسباب التصميمية للتصدعات في المباني</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 التربة والأساسات</span>
+    <ul class="items">
+      <li>عدم الاهتمام بدراسة التربة</li>
+      <li>سوء اختيار نوع الأساس المناسب</li>
+      <li>عدم حساب الهبوط المتوقع</li>
+      <li>تصميم الأساسات بطريقة لا تناسب التربة</li>
+    </ul>
+    <span class="sub-title">🔹 الاستخدام والتصميم</span>
+    <ul class="items">
+      <li>عدم فهم طبيعة استخدام المنشأ</li>
+      <li>قلة التفاصيل الإنشائية</li>
+      <li>استعمال تسليح غير كافٍ</li>
+      <li>عدم أخذ تأثير الإجهادات كاملة</li>
+    </ul>
+    <span class="sub-title">🔹 البيانات والظروف</span>
+    <ul class="items">
+      <li>نقص البيانات والرسومات</li>
+      <li>إهمال الظروف المحيطة</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q2">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">2</span>
+    <span class="card-title">🟠 الأسباب التنفيذية للتصدعات في المباني</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 اللوحات والإشراف</span>
+    <ul class="items">
+      <li>عدم الاهتمام بالتفاصيل في اللوحات</li>
+      <li>اعتماد المهندس المنفذ على خبرته وعدم تواصله مع المهندس المصمم</li>
+      <li>عدم دراسة الاشتراطات والمواصفات</li>
+    </ul>
+    <span class="sub-title">🔹 المواد والجودة</span>
+    <ul class="items">
+      <li>عدم إجراء اختبارات ضبط الجودة للمواد</li>
+      <li>تنفيذ أعمال خرسانية غير مطابقة للمواصفات</li>
+      <li>التخزين السيء للمواد</li>
+    </ul>
+    <span class="sub-title">🔹 التربة والموقع</span>
+    <ul class="items">
+      <li>عدم نزع المياه في الأماكن القريبة من التأسيس</li>
+      <li>عدم الاهتمام بدمك التربة</li>
+    </ul>
+    <span class="sub-title">🔹 التنفيذ بالموقع</span>
+    <ul class="items">
+      <li>وجود عيوب في الشدات المعدنية والخشبية</li>
+      <li>عدم الفهم الإنشائي للعناصر الإنشائية</li>
+      <li>تنفيذ فتحات أو أعمال تُضعف العنصر الإنشائي</li>
+      <li>تعرض المنشأ لأحمال غير مكافئة أثناء التنفيذ</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q3">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">3</span>
+    <span class="card-title">🟡 الشروخ الناتجة عن هبوط التربة</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 الأسباب</span>
+    <ul class="items">
+      <li>انكماش وانتفاخ التربة بسبب تسرب المياه نتيجة الأمطار أو خلافه مما يؤدي إلى هبوط أو زيادة حجم التربة</li>
+      <li>نتيجة أحمال المبنى حيث تؤدي إلى ضغط بسبب هبوط التربة</li>
+    </ul>
+    <span class="sub-title">🔹 كيفية المنع</span>
+    <ul class="items">
+      <li>أن يكون تصميم الأساسات بناء على نتائج أبحاث التربة يبين فيه تغير خواص التربة في الاتجاه العرضي مع العمق</li>
+      <li>عند تصميم الميدات يمكن أخذ القيمة المسموح بها في زاوية الهبوط</li>
+      <li>يمكن الاستفادة من مشاركة حوائط المبنى مع زيادة جساءة المبنى ومقاومة فروق الهبوط</li>
+      <li>يراعى في الأراضي الرخوة عمل تفاصيل إنشائية لتقاطع الكمرات والأعمدة بحيث تعمل كـ Frames</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q4">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">4</span>
+    <span class="card-title">🔵 الشروخ غير الإنشائية</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>شروخ الانكماش الحراري تحدث نتيجة الحرارة المنبعثة من تفاعل المياه مع الأسمنت أثناء تصلب الخرسانة</li>
+      <li>شروخ الانكماش اللدن تحدث نتيجة تبخر المياه من الطبقة السطحية للخرسانة بعد صبها</li>
+      <li>شروخ الهبوط اللدن تحدث عندما يكون هناك هبوط للخرسانة وهي في حالتها اللدنة وعند إعاقتها تحدث التشققات</li>
+      <li>شروخ القلص الحراري المبكر تحدث عند استخدام أسمنت سريع الشك حيث ترتفع درجة الحرارة ثم تنخفض مما يسبب الشروخ</li>
+      <li>شروخ انكماش الجفاف تحدث بسبب السمك الكبير وعدم وجود تسليح كافٍ</li>
+      <li>الشروخ الشبكية بسبب وجود كمية كبيرة من المياه السطحية</li>
+      <li>شروخ نتيجة تغير درجة حرارة الجو بسبب اختلاف التمدد والانكماش</li>
+      <li>شروخ نتيجة تآكل حديد التسليح بسبب الرطوبة</li>
+      <li>شروخ بسبب التفاعل القلوي للركام</li>
+      <li>شروخ نتيجة تآكل الخرسانة بالكبريتات</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q5">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">5</span>
+    <span class="card-title">🟢 تقسيم التشققات وطرق الفحص</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 الفحص البصري</span>
+    <ul class="items">
+      <li>الأماكن التي تصدعت منها حوافر خرسانة</li>
+      <li>أماكن التسليح الظاهر</li>
+      <li>بقع الصدأ</li>
+      <li>مدى تآكل الخرسانة</li>
+    </ul>
+    <span class="sub-title">🔹 الفحص الآلي</span>
+    <ul class="items">
+      <li>يمكن الطرق على السطح بواسطة المطرقة لاكتشاف التشققات القريبة من السطح</li>
+    </ul>
+    <span class="sub-title">🔹 الفحص المخبري</span>
+    <ul class="items">
+      <li>الاختبارات غير المتلفة للخرسانة</li>
+      <li>الاختبارات المتلفة للخرسانة</li>
+    </ul>
+    <span class="sub-title">🔹 مراجعة المخططات</span>
+    <ul class="items">
+      <li>يجب مراجعة التصميم الإنشائي ومخططات التسليح</li>
+    </ul>
+    <span class="sub-title">🔹 الحكم على الشقوق</span>
+  </div>
+</div>
+
+<div class="card q6">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">6</span>
+    <span class="card-title">🟣 أهداف إصلاح التشققات</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>استعادة المقاومة أو زيادتها</li>
+      <li>استعادة الصلابة أو زيادتها</li>
+      <li>تحسين الأداء الوظيفي للمبنى</li>
+      <li>إكساب الخرسانة خاصية عدم نفاذية المياه</li>
+      <li>تحسين الظهور الخارجي للخرسانة</li>
+      <li>منع وصول المواد التي تساعد على تآكل الخرسانة أو صدأ حديد التسليح</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q7">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">7</span>
+    <span class="card-title">⚫ خطوات الإصلاح والعلاج</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>تحديد الحالة</li>
+      <li>تحديد مدى جدوى الإصلاح والعلاج من عدمه</li>
+      <li>وضع خطة العمل وتحديد أولويات العمل</li>
+      <li>اختيار وتحديد طريقة الإصلاح</li>
+      <li>إعداد العنصر الإنشائي للإصلاح</li>
+      <li>التنفيذ السليم لطريقة الإصلاح</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q8">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">8</span>
+    <span class="card-title">🟤 الحكم على سلامة المنشأ</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>الحكم على الاستقرار</li>
+      <li>الحكم على مدى قابلية المنشأ على أداء وظيفته</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q9">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">9</span>
+    <span class="card-title">⚪ سبب اللجوء إلى التدعيم أو إعادة التأهيل</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>عدم وجود مبدأ الصيانة للمنشآت</li>
+      <li>التكلفة الزائدة للمنشآت الحديثة</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q10">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">10</span>
+    <span class="card-title">🔴 أسباب الانهيار المفاجئ للمباني</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>عدم الدراسة الكافية للتربة</li>
+      <li>جهل المصمم بما تحت الأرض</li>
+      <li>التغيير في استخدام المنشأ</li>
+      <li>التغيير في العناصر الإنشائية</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q11">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">11</span>
+    <span class="card-title">🟡 قائمة الفحص الابتدائي للمنشآت</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 معلومات عامة</span>
+    <ul class="items">
+      <li>الموقع ونوع المنشأ وأبعاده وارتفاعه</li>
+      <li>التصميم وتقرير التربة</li>
+      <li>الرسومات</li>
+      <li>استكشاف الموقع وعمل اختبارات</li>
+    </ul>
+    <span class="sub-title">🔹 الحالة الراهنة</span>
+    <ul class="items">
+      <li>الحركة والتشكيل (انعجاج – ترخيم – هبوط الأساسات – حركة البلاطات)</li>
+      <li>الأجزاء التي بها تلفيات وشروخ (أعمدة – كمرات – أسقف)</li>
+      <li>حالة سطح مكونات المبنى</li>
+      <li>حالة الخرسانة الداخلية (مقاومة الخرسانة وعيوبها)</li>
+    </ul>
+    <span class="sub-title">🔹 ظروف التحميل والبيئة</span>
+    <ul class="items">
+      <li>تأثير البيئة المحيطة</li>
+      <li>تأثير الأحمال</li>
+      <li>صرف مياه الأمطار</li>
+      <li>حالة التربة</li>
+    </ul>
+    <span class="sub-title">🔹 المواد المستخدمة</span>
+    <ul class="items">
+      <li>الأسمنت</li>
+      <li>الركام بأنواعه</li>
+      <li>الإضافات</li>
+      <li>ماء الخلط</li>
+      <li>صلب التسليح</li>
+      <li>الخلطة الخرسانية</li>
+      <li>خواص الخرسانة الطازجة</li>
+    </ul>
+    <span class="sub-title">🔹 طريقة التنفيذ</span>
+    <ul class="items">
+      <li>التعامل مع المواد</li>
+      <li>الشدات</li>
+      <li>الخلط</li>
+      <li>الصب والدمك</li>
+      <li>إنهاء الأسطح</li>
+      <li>المعالجة</li>
+      <li>فك الشدات</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q12">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">12</span>
+    <span class="card-title">🟢 وسائل منع حدوث الشروخ في الخرسانة</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <span class="sub-title">🔹 التصميم والخلطة</span>
+    <ul class="items">
+      <li>تصميم الخلطة الخرسانية بنسبة ماء/أسمنت مناسبة (أقل من 0.5)</li>
+      <li>استخدام أسمنت منخفض الحرارة لتقليل الحرارة الناتجة عن الإماهة</li>
+      <li>اختيار ركام جيد التدرج ونظيف خالٍ من الشوائب</li>
+      <li>استخدام الإضافات الكيميائية (Admixtures) لتحسين قابلية التشغيل دون زيادة الماء</li>
+      <li>إضافة الألياف (Steel/Polypropylene Fibers) لتحسين مقاومة الشد والحد من الشروخ</li>
+    </ul>
+    <span class="sub-title">🔹 التنفيذ والصب</span>
+    <ul class="items">
+      <li>الصب في أوقات برودة الجو (صباحاً أو مساءً) لتفادي التبخر السريع</li>
+      <li>الدمك الجيد للخرسانة بالهزازات لتجنب الفراغات والتجاويف</li>
+      <li>تجنب إضافة ماء زائد في موقع الصب (تخفيف الخرسانة)</li>
+      <li>الصب على مراحل في العناصر الكبيرة لتقليل حرارة الإماهة</li>
+    </ul>
+    <span class="sub-title">🔹 المعالجة (Curing)</span>
+    <ul class="items">
+      <li>المعالجة الرطبة المستمرة لمدة لا تقل عن 7 أيام</li>
+      <li>تغطية الأسطح بأكياس خيش مبللة أو غشاء بولي إيثيلين</li>
+      <li>استخدام مركبات المعالجة الكيميائية (Curing Compounds)</li>
+      <li>حماية الخرسانة من الرياح الجافة والشمس المباشرة في أيام الصب الأولى</li>
+    </ul>
+    <span class="sub-title">🔹 التفاصيل الإنشائية</span>
+    <ul class="items">
+      <li>عمل فواصل التمدد والانكماش (Expansion & Contraction Joints) في الأماكن المناسبة</li>
+      <li>توفير تسليح كافٍ لمقاومة إجهادات الشد ومنع اتساع الشروخ</li>
+      <li>استخدام شبك تسليح مضاد للانكماش في البلاطات والأرضيات</li>
+      <li>تجنب التغييرات المفاجئة في المقاطع الإنشائية</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q13">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">13</span>
+    <span class="card-title">🔵 ما معنى تفحم الحديد</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items" style="list-style:none;padding:0">
+      <li style="padding:10px 14px;border-radius:8px;margin-bottom:10px;background:rgba(46,204,113,.1)">
+        <span class="badge badge-green">أقل من 20%</span><br>
+        صدأ بسيط (حديد سليم)
+      </li>
+      <li style="padding:10px 14px;border-radius:8px;margin-bottom:10px;background:rgba(241,196,15,.1)">
+        <span class="badge badge-yellow">من 20% إلى 40%</span><br>
+        صدأ متوسط (يحتاج معالجة)
+      </li>
+      <li style="padding:10px 14px;border-radius:8px;margin-bottom:10px;background:rgba(231,76,60,.1)">
+        <span class="badge badge-red">من 40% إلى 60%</span><br>
+        حديد متفحم (تلف شديد ويحتاج تدخل قوي)
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="card q14">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="card-num">14</span>
+    <span class="card-title">🟣 مواد الإصلاح والترميم</span>
+    <span class="card-chevron">▼</span>
+  </div>
+  <div class="card-body">
+    <ul class="items">
+      <li>كيما بوكس 131 مانع للصدأ</li>
+      <li>كيما بوكس 165 تزربع أشاير الحديد</li>
+      <li>كيما بوكس 104 ربط الخرسانة القديمة بالجديدة</li>
+      <li>ايدوبوند 65 ربط الخرسانة القديمة بالجديدة</li>
+      <li>سيكامنت 163M مادة محسنة للتشغيلية</li>
+      <li>ماستر سيل 501 مادة عزل للرطوبة وعزل كيميائي</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<!-- Drawing Canvas -->
+<canvas id="annCanvas"></canvas>
+
+<!-- Annotation Toolbar -->
+<div class="ann-toolbar" id="annToolbar">
+  <button class="ann-btn" id="annToggle" onclick="toggleAnnotation()" title="تفعيل/إيقاف وضع الكتابة">✏️</button>
+  <span class="ann-label">قلم</span>
+  <div class="ann-sep"></div>
+  <div class="ann-color sel" style="background:#e74c3c" data-color="#e74c3c" onclick="setColor(this)" title="أحمر"></div>
+  <div class="ann-color" style="background:#3498db" data-color="#3498db" onclick="setColor(this)" title="أزرق"></div>
+  <div class="ann-color" style="background:#2ecc71" data-color="#2ecc71" onclick="setColor(this)" title="أخضر"></div>
+  <div class="ann-color" style="background:#f1c40f" data-color="#f1c40f" onclick="setColor(this)" title="أصفر"></div>
+  <div class="ann-color" style="background:#9b59b6" data-color="#9b59b6" onclick="setColor(this)" title="بنفسجي"></div>
+  <div class="ann-color" style="background:#e8eaf0;border:1px solid #666" data-color="#e8eaf0" onclick="setColor(this)" title="أبيض"></div>
+  <div class="ann-sep"></div>
+  <button class="ann-btn" id="eraserBtn" onclick="setEraser()" title="ممحاة">🧹</button>
+  <input class="ann-size" type="range" id="annSizeSlider" min="2" max="28" value="4" title="حجم القلم">
+  <div class="ann-sep"></div>
+  <button class="ann-btn" onclick="clearCanvas()" title="مسح الكل">🗑️</button>
+</div>
+
+<script>
+var isLight = false;
+var fontSize = 15;
+var MIN_FS = 12, MAX_FS = 22;
+
+function setFontVars(fs) {
+  var r = document.documentElement;
+  r.style.setProperty('--fs-title', (fs + 1) + 'px');
+  r.style.setProperty('--fs-sub',   fs + 'px');
+  r.style.setProperty('--fs-li',    fs + 'px');
+}
+
+function changeFont(dir) {
+  fontSize = Math.min(MAX_FS, Math.max(MIN_FS, fontSize + dir));
+  setFontVars(fontSize);
+}
+
+function toggleMode() {
+  isLight = !isLight;
+  document.body.classList.toggle('light', isLight);
+  document.getElementById('modeIcon').textContent  = isLight ? '🌙' : '☀️';
+  document.getElementById('modeLabel').textContent = isLight ? 'وضع داكن' : 'وضع فاتح';
+}
+
+function toggle(header) {
+  var body = header.nextElementSibling;
+  var chev = header.querySelector('.card-chevron');
+  var isOpen = body.classList.contains('open');
+  // Accordion: close all first
+  document.querySelectorAll('.card-body').forEach(function(b) {
+    b.classList.remove('open');
+    b.previousElementSibling.classList.remove('open');
+    b.previousElementSibling.querySelector('.card-chevron').classList.remove('open');
+  });
+  // If it was closed, open it
+  if (!isOpen) {
+    body.classList.add('open');
+    header.classList.add('open');
+    chev.classList.add('open');
+    body.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function expandAll() {
+  document.querySelectorAll('.card-body').forEach(function(b) {
+    b.classList.add('open');
+    b.previousElementSibling.classList.add('open');
+    b.previousElementSibling.querySelector('.card-chevron').classList.add('open');
+  });
+}
+
+function collapseAll() {
+  document.querySelectorAll('.card-body').forEach(function(b) {
+    b.classList.remove('open');
+    b.previousElementSibling.classList.remove('open');
+    b.previousElementSibling.querySelector('.card-chevron').classList.remove('open');
+  });
+}
+
+setFontVars(fontSize);
+// Start with all cards collapsed
+
+function filterCards(query) {
+  var q = query.trim().toLowerCase();
+  var cards = document.querySelectorAll('.card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var text = card.textContent.toLowerCase();
+    if (!q || text.includes(q)) {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  document.getElementById('noResults').style.display = (visible === 0) ? 'block' : 'none';
+  document.getElementById('cardCount').textContent =
+    q ? (visible + ' نتيجة من أصل 14 موضوعاً') : '14 موضوعاً · اضغط على أي قسم لعرض تفاصيله';
+}
+
+// ===== Annotation / Drawing =====
+var annActive = false;
+var isEraser  = false;
+var annColor  = '#e74c3c';
+var annSize   = 4;
+var drawing   = false;
+var lastX = 0, lastY = 0;
+
+var canvas = document.getElementById('annCanvas');
+var ctx    = canvas.getContext('2d');
+
+function resizeCanvas() {
+  var oldW = canvas.width, oldH = canvas.height;
+  var imgData = null;
+  if (oldW > 0 && oldH > 0) {
+    try { imgData = ctx.getImageData(0, 0, oldW, oldH); } catch(e) {}
+  }
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  if (imgData) {
+    try { ctx.putImageData(imgData, 0, 0); } catch(e) {}
+  }
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function toggleAnnotation() {
+  annActive = !annActive;
+  canvas.classList.toggle('active', annActive);
+  document.getElementById('annToggle').classList.toggle('active', annActive);
+  document.body.style.cursor = annActive ? 'crosshair' : '';
+}
+
+function setColor(el) {
+  isEraser = false;
+  annColor = el.dataset.color;
+  document.querySelectorAll('.ann-color').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  document.getElementById('eraserBtn').classList.remove('active');
+}
+
+function setEraser() {
+  isEraser = !isEraser;
+  document.getElementById('eraserBtn').classList.toggle('active', isEraser);
+  document.querySelectorAll('.ann-color').forEach(function(c){ c.classList.remove('sel'); });
+}
+
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+document.getElementById('annSizeSlider').addEventListener('input', function() {
+  annSize = parseInt(this.value);
+});
+
+function getPos(e) {
+  var cx = e.touches ? e.touches[0].clientX : e.clientX;
+  var cy = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: cx, y: cy };
+}
+
+function draw(x, y) {
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(x, y);
+  ctx.lineWidth  = isEraser ? annSize * 4 : annSize;
+  ctx.lineCap    = 'round';
+  ctx.lineJoin   = 'round';
+  if (isEraser) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.strokeStyle = 'rgba(0,0,0,1)';
+  } else {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = annColor;
+  }
+  ctx.stroke();
+  lastX = x; lastY = y;
+}
+
+canvas.addEventListener('mousedown', function(e) { if(!annActive) return; drawing=true; var p=getPos(e); lastX=p.x; lastY=p.y; });
+canvas.addEventListener('mousemove', function(e) { if(!drawing||!annActive) return; var p=getPos(e); draw(p.x,p.y); });
+canvas.addEventListener('mouseup',   function()  { drawing=false; });
+canvas.addEventListener('mouseleave',function()  { drawing=false; });
+
+canvas.addEventListener('touchstart', function(e){ if(!annActive) return; e.preventDefault(); drawing=true; var p=getPos(e); lastX=p.x; lastY=p.y; },{passive:false});
+canvas.addEventListener('touchmove',  function(e){ if(!drawing||!annActive) return; e.preventDefault(); var p=getPos(e); draw(p.x,p.y); },{passive:false});
+canvas.addEventListener('touchend',   function()  { drawing=false; });
+</script>
+
+</body>
+</html>
