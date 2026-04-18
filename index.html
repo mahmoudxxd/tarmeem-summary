@@ -57,7 +57,7 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  padding: 20px;
+  padding: 20px 20px 80px;
   transition: background .25s, color .25s;
 }
 
@@ -351,16 +351,43 @@ body.light .card-num { border-color: rgba(0,0,0,.12); }
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--surface);
+  background: rgba(26,29,39,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 50px;
   padding: 7px 14px;
   box-shadow: 0 6px 28px rgba(0,0,0,.35);
   z-index: 9999;
   user-select: none;
-  transition: background .25s, border-color .25s;
+  transition: background .25s, border-color .25s, transform .3s, opacity .3s;
   flex-wrap: nowrap;
 }
+body.light .ann-toolbar { background: rgba(255,255,255,.92); }
+.ann-toolbar.collapsed {
+  transform: translateX(-50%) translateY(calc(100% + 30px));
+  opacity: 0;
+  pointer-events: none;
+}
+.ann-toggle-fab {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(26,29,39,.92);
+  backdrop-filter: blur(12px);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: background .2s, transform .2s;
+}
+body.light .ann-toggle-fab { background: rgba(255,255,255,.92); }
+.ann-toggle-fab:hover { transform: scale(1.12); }
 .ann-btn {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -393,7 +420,7 @@ body.light .ann-color.sel { border-color: #222; }
   cursor: pointer;
 }
 .ann-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-@media print { #annCanvas, .ann-toolbar { display: none !important; } }
+@media print { #annCanvas, .ann-toolbar, .ann-toggle-fab { display: none !important; } }
 
 @media print {
   body { background: #fff !important; color: #111 !important; padding: 10px; }
@@ -820,6 +847,9 @@ body.light .ann-color.sel { border-color: #222; }
   <button class="ann-btn" onclick="clearCanvas()" title="مسح الكل">🗑️</button>
 </div>
 
+<!-- Toggle Toolbar Visibility Button -->
+<button class="ann-toggle-fab" id="annFab" onclick="toggleToolbar()" title="إخفاء/إظهار شريط الأدوات">✏️</button>
+
 <script>
 var isLight = false;
 var fontSize = 15;
@@ -987,6 +1017,13 @@ canvas.addEventListener('mouseleave',function()  { drawing=false; });
 canvas.addEventListener('touchstart', function(e){ if(!annActive) return; e.preventDefault(); drawing=true; var p=getPos(e); lastX=p.x; lastY=p.y; },{passive:false});
 canvas.addEventListener('touchmove',  function(e){ if(!drawing||!annActive) return; e.preventDefault(); var p=getPos(e); draw(p.x,p.y); },{passive:false});
 canvas.addEventListener('touchend',   function()  { drawing=false; });
+function toggleToolbar() {
+  var tb = document.getElementById('annToolbar');
+  var fab = document.getElementById('annFab');
+  var hidden = tb.classList.toggle('collapsed');
+  fab.textContent = hidden ? '✏️' : '✖️';
+  fab.title = hidden ? 'إظهار شريط الأدوات' : 'إخفاء شريط الأدوات';
+}
 </script>
 
 </body>
